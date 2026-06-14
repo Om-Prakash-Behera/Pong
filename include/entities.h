@@ -15,8 +15,16 @@ public:
     // Initialize ball
     Ball(sf::Vector2f position, float radius, sf::Color color);
 
+    // Accessors
+    sf::Vector2f getPosition() const;
+    float getRadius() const;
+    
+    // Collision detection
+    bool intersects(const sf::FloatRect& rect) const;
+    
     // Move ball
     void move(float dx, float dy);
+    void moveTo(float x, float y);
 
     void draw(sf::RenderWindow& window);
 };
@@ -29,6 +37,9 @@ public:
     // Initialize players
     Pong(sf::Vector2f position, sf::Vector2f size, sf::Color color);
     
+    // Accessor
+    sf::FloatRect getGlobalBounds() const;
+
     // Move pong
     void move(float dy);
 

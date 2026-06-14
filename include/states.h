@@ -3,7 +3,7 @@
 
 #include "entities.h"
 
-inline int state = 0; // 0 = Menu, 1 = Play
+inline int state = 1; // 0 = Menu, 1 = Play
 
 class Game;
 
@@ -36,19 +36,21 @@ private:
     Ball ball;
     Pong player1;
     Pong player2;
+    sf::Font font;
+    sf::Text player1_score_text;
+    sf::Text player2_score_text;
 
     // Game logic variables here
-    float pongSpeed = 20.f;
-    float ballSpeedx = 40.f;
-    float ballSpeedy = 40.f;
+    float pongSpeed = 150.f;
+    float ballSpeedx = 100.f;
+    float ballSpeedy = 100.f;
+    int player1_score = 0;
+    int player2_score = 0;
+    bool intersecting = false; // To prevent multiple collisions in one frame
 
 public:
     // Constructor Initialize player and enemy
-    PlayState()
-        : ball({400.f, 300.f}, 20.f, sf::Color::White),
-          player1({50.f, 250.f}, {25.f, 100.f}, sf::Color::White),
-          player2({735.f, 250.f}, {25.f, 100.f}, sf::Color::White)
-    {}
+    PlayState();
     void handleInput() override;
     void fixedUpdate(float dt) override;
     void update(float dt) override;
